@@ -365,6 +365,16 @@ def threatfeeds_ips(feed, start_date=None, end_date=None, return_format=None):
 
     return _get(uri, return_format)
 
+def threatfeeds_hostnames(feed, return_format=None):
+    """Works for shodan, miner and onyphe.
+
+    :param feed: string
+    """
+    uri = 'threatlisthosts'
+    uri = '/'.join([uri, feed])
+
+    return _get(uri, return_format)
+
 def webhoneypotsummary(date, return_format=None):
     """API data for `Webhoneypot: Web Server Log Project
     <https://dshield.org/webhoneypot/>`_.
