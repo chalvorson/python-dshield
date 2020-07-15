@@ -442,3 +442,45 @@ def openiocsources(date, limit=None, page=None, return_format=None):
 
     return _get(uri, return_format)
 
+def getmspatchday(date, return_format=None):
+    """Returns Microsoft patches issues on a given date.
+
+    :param date: string or datetime.date() (required)
+    """
+    uri = 'getmspatchday'
+    if date:
+        try:
+            uri = '/'.join([uri, date.strftime("%Y-%m-%d")])
+        except AttributeError:
+            uri = '/'.join([uri, date])
+    return _get(uri, return_format)
+
+def getmspatch(patch, return_format=None):
+    """Returns a Microsoft patch.
+
+    :param patch: string (required)
+    """
+    uri = 'getmspatch'
+    if patch:
+        uri = '/'.join([uri, patch])
+    return _get(uri, return_format)
+
+def getmspatchcves(patch, return_format=None):
+    """Returns the CVEs associated with a particular Microsoft patch.
+
+    :param patch: string (required)
+    """
+    uri = 'getmspatchcves'
+    if patch:
+        uri = '/'.join([uri, patch])
+    return _get(uri, return_format)
+
+def getmspatchreplaces(patch, return_format=None):
+    """Returns the Microsoft patches replaced by a particular Microsoft patch.
+
+    :param patch: string (required)
+    """
+    uri = 'getmspatchreplaces'
+    if patch:
+        uri = '/'.join([uri, patch])
+    return _get(uri, return_format)
