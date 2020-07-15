@@ -421,3 +421,24 @@ def webhoneypotbytype(return_format=None):
     """
     return _get('webhoneypotbytype', return_format)
 
+def openiocsources(date, limit=None, page=None, return_format=None):
+    """Returns firewall logs in OpenIOC format.
+    Parameters: Date, Records (Max: 1000), Page (For iterating beyond 1000 records)
+
+    :param date: string or datetime.date() (required)
+    :param limit: string or int, limit for number of returned items
+    :param page: string or int, page number for iterating beyond max 1000 records/request
+    """
+    uri = 'openiocsources'
+    if date:
+        try:
+            uri = '/'.join([uri, date.strftime("%Y-%m-%d")])
+        except AttributeError:
+            uri = '/'.join([uri, date])
+        if limit:
+            uri = '/'.join([uri, str(limit)])
+        if page:
+            uri = '/'.join([uri, str(page)])
+
+    return _get(uri, return_format)
+
