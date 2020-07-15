@@ -315,6 +315,32 @@ def threatfeeds_ipsperday(start_date=None, end_date=None, return_format=None):
 
     return _get(uri, return_format)
 
+def threatfeeds_ipsperfeedperday(feed_list=None, start_date=None, end_date=None, return_format=None):
+    """Ommit the feed name to list all.
+
+    :param feed_list: string
+    :param start_date: string or datetime.date()
+    :param end_date: string or datetime.date()
+    """
+    uri = 'threatfeeds/feedperday'
+
+    if start_date:
+        try:
+            uri = '/'.join([uri, start_date.strftime("%Y-%m-%d")])
+        except AttributeError:
+            uri = '/'.join([uri, start_date])
+            
+        if end_date:
+            try:
+                uri = '/'.join([uri, end_date.strftime("%Y-%m-%d")])
+            except AttributeError:
+                uri = '/'.join([uri, end_date])
+
+    if feed_list:
+        uri = '/'.join([uri, feed_list])
+
+    return _get(uri, return_format)
+
 def webhoneypotsummary(date, return_format=None):
     """API data for `Webhoneypot: Web Server Log Project
     <https://dshield.org/webhoneypot/>`_.
