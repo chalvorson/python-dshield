@@ -3,7 +3,7 @@
 import datetime
 import requests
 
-__version__ = "0.2.1"
+__version__ = "0.3.0"
 
 XML = "?xml"
 JSON = "?json"
@@ -269,6 +269,18 @@ def glossary(term=None, return_format=None):
     uri = 'glossary'
     if term:
         uri = '/'.join([uri, term])
+    return _get(uri, return_format)
+
+def survivaltime(date, return_format=None):
+    """The average time between reports for an average IP address in seconds.
+
+    :param date: string or datetime.date() (required)
+    """
+    uri = 'survivaltime'
+    try:
+        uri = '/'.join([uri, date.strftime("%Y-%m-%d")])
+    except AttributeError:
+        uri = '/'.join([uri, date])
     return _get(uri, return_format)
 
 def webhoneypotsummary(date, return_format=None):
