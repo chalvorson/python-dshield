@@ -283,6 +283,16 @@ def survivaltime(date, return_format=None):
         uri = '/'.join([uri, date])
     return _get(uri, return_format)
 
+def threatfeeds_listoffeeds(return_format=None):
+    """We do collect data from a number of open threat feeds. 
+    This API will give you access to this data. Some of this 
+    data can also be found as part of the IP or Domain data 
+    we return with other API functions.
+
+    Parameters: none
+    """
+    return _get('threatfeeds', return_format)
+
 def webhoneypotsummary(date, return_format=None):
     """API data for `Webhoneypot: Web Server Log Project
     <https://dshield.org/webhoneypot/>`_.
